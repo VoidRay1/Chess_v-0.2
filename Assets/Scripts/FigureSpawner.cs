@@ -35,14 +35,14 @@ public class FigureSpawner : MonoBehaviour
             .Initialize(_board.Cells[0, 6], Chess.Color.White); 
         _board.Cells[0, 2].Figure = Instantiate(_whiteBishop, _board.Cells[0, 2].transform.position, Quaternion.identity, _board.Cells[0, 2].transform)
             .Initialize(_board.Cells[0, 2], Chess.Color.White); 
-        _board.Cells[3, 5].Figure = Instantiate(_whiteBishop, _board.Cells[3, 5].transform.position, Quaternion.identity, _board.Cells[3, 5].transform)
-            .Initialize(_board.Cells[3, 5], Chess.Color.White); 
+        _board.Cells[0, 5].Figure = Instantiate(_whiteBishop, _board.Cells[0, 5].transform.position, Quaternion.identity, _board.Cells[0, 5].transform)
+            .Initialize(_board.Cells[0, 5], Chess.Color.White); 
         _board.Cells[0, 0].Figure = Instantiate(_whiteRook, _board.Cells[0, 0].transform.position, Quaternion.identity, _board.Cells[0, 0].transform)
             .Initialize(_board.Cells[0, 0], Chess.Color.White); 
-        _board.Cells[3, 7].Figure = Instantiate(_whiteRook, _board.Cells[3, 7].transform.position, Quaternion.identity, _board.Cells[3, 7].transform)
-            .Initialize(_board.Cells[3, 7], Chess.Color.White);
-        _board.Cells[3, 3].Figure = Instantiate(_whiteQueen, _board.Cells[3, 3].transform.position, Quaternion.identity, _board.Cells[3, 3].transform)
-            .Initialize(_board.Cells[3, 3], Chess.Color.White);
+        _board.Cells[0, 7].Figure = Instantiate(_whiteRook, _board.Cells[0, 7].transform.position, Quaternion.identity, _board.Cells[0, 7].transform)
+            .Initialize(_board.Cells[0, 7], Chess.Color.White);
+        _board.Cells[0, 3].Figure = Instantiate(_whiteQueen, _board.Cells[0, 3].transform.position, Quaternion.identity, _board.Cells[0, 3].transform)
+            .Initialize(_board.Cells[0, 3], Chess.Color.White);
         _board.Cells[0, 4].Figure = Instantiate(_whiteKing, _board.Cells[0, 4].transform.position, Quaternion.identity, _board.Cells[0, 4].transform)
             .Initialize(_board.Cells[0, 4], Chess.Color.White);
     }

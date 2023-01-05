@@ -15,13 +15,12 @@ public abstract class Figure : MonoBehaviour
         return this;
     }
 
-    public void Move(Cell targetPosition)
+    public virtual void Move(Cell targetPosition)
     {
         GameObject figure = transform.gameObject;
         transform.parent.DetachChildren();
         if (targetPosition.Figure)
         {
-            Debug.Log("has figure");
             Destroy(targetPosition.Figure.transform.gameObject);
             targetPosition.Figure = null;
         }

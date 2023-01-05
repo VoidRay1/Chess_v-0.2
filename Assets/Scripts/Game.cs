@@ -3,44 +3,42 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Board _board;
-    [SerializeField] private SelectedFigureDisplayer _figureDisplayer;
+    [SerializeField] private SelectFigureHandler _selectFigureHandler;
+    [SerializeField] private CurrentPlayerDisplayer _playerDisplayer;
+    private Player[] _players = new Player[2];
+    private Player _currentPlayerTurn;
     private Figure _selectedFigure;
 
     private void Start()
     {
         _board.Create();
+        _players[0] = new Player(Chess.Color.White);
+        _players[1] = new Player(Chess.Color.Black);
+        _currentPlayerTurn = _players[0];
+        _playerDisplayer.Display(_currentPlayerTurn);
     }
 
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, float.MaxValue))
+            if (_selectFigureHandler.TrySelect(_currentPlayerTurn))
             {
-                if(hit.collider != null && hit.collider.TryGetComponent(out Cell targetPosition))
-                {
-                    if(_selectedFigure == null && targetPosition.IsEmpty == false)
-                    {
-                        _selectedFigure = targetPosition.Figure;
-                    }
-                    else if(_selectedFigure && _selectedFigure.CanMove(targetPosition))
-                    {
-                        _selectedFigure.Move(targetPosition);
-                        _selectedFigure = null;
-                    }
-                    else if(_selectedFigure && _selectedFigure.CanMove(targetPosition) == false)
-                    {
-                        _selectedFigure = targetPosition.Figure;
-                    }
-                    _figureDisplayer.Display(_selectedFigure); 
-                } 
+                _selectedFigure = _selectFigureHandler.SelectedFigure;
+            }
+            if (_selectedFigure && _selectFigureHandler.TryMove())
+            {
+                SwitchTurn();
+                _playerDisplayer.Display(_currentPlayerTurn);
             }
         }
-        if(Input.GetMouseButtonDown(1))
-        {
-            Debug.Log(_selectedFigure);
-        }
+    }
+
+    private void SwitchTurn()
+    {
+        if (_players[_players.Length - 1] == _currentPlayerTurn)
+            _currentPlayerTurn = _players[0];
+        else
+            _currentPlayerTurn = _players[_players.Length - 1];
     }
 }

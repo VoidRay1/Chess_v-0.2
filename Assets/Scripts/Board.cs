@@ -21,7 +21,7 @@ public class Board : MonoBehaviour
             {
                 var cell = Instantiate(_cell, transform.position + new Vector3Int(x, y, 0), Quaternion.identity, transform);
                 color = (x + y) % 2 == 0 ? Color.white : new Color(128, 64, 48);
-                cell.GetComponent<Cell>().Init(x, y, this, color);
+                cell.GetComponent<Cell>().Init(x, y, this);
                 cell.GetComponent<Renderer>().material.color = color;
                 _cells[y, x] = cell.GetComponent<Cell>();
             }

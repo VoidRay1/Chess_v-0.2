@@ -1,13 +1,10 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Renderer))]
 public class Cell : MonoBehaviour
 {
-    // serialize for debug
-    [SerializeField] private int _x;
-    [SerializeField] private int _y;
-    [SerializeField] private Color _color;
+    private int _x;
+    private int _y;
     private Board _board;
 
     public Figure Figure;
@@ -15,12 +12,11 @@ public class Cell : MonoBehaviour
     public int Y => _y;
     public bool IsEmpty => Figure == null;
 
-    public void Init(int x, int y, Board board, Color color)
+    public void Init(int x, int y, Board board)
     {
         _x = x;
         _y = y;
         _board = board;
-        _color = color;
     }
 
     public bool isEnemy(Cell targetPosition)
